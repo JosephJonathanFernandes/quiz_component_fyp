@@ -101,7 +101,7 @@ const HomePage: React.FC = () => {
         ))}
       </div>
 
-      <div style={{ marginTop: '30px' }}>
+      <div className="quiz-actions">
         <Link to="/progress" className="nav-button">
           View Progress
         </Link>

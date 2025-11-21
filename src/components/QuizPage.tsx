@@ -200,15 +200,15 @@ const QuizPage: React.FC = () => {
       <div className="container">
         <div className="quiz-card">
           <h2>Quiz Completed!</h2>
-          <div style={{ fontSize: '48px', margin: '20px 0' }}>🎉</div>
+          <div className="quiz-score">🎉</div>
           <h3>Your Score: {quizSession.score} / {quizSession.questions.length}</h3>
           <h4>Percentage: {scorePercentage}%</h4>
           
-          {scorePercentage >= 80 && <p style={{ color: '#4CAF50', fontSize: '18px' }}>Excellent work! 🌟</p>}
-          {scorePercentage >= 60 && scorePercentage < 80 && <p style={{ color: '#FF9800', fontSize: '18px' }}>Good job! Keep practicing! 👍</p>}
-          {scorePercentage < 60 && <p style={{ color: '#f44336', fontSize: '18px' }}>Keep practicing to improve! 💪</p>}
+          {scorePercentage >= 80 && <p className="quiz-feedback excellent">Excellent work! 🌟</p>}
+          {scorePercentage >= 60 && scorePercentage < 80 && <p className="quiz-feedback good">Good job! Keep practicing! 👍</p>}
+          {scorePercentage < 60 && <p className="quiz-feedback needs-practice">Keep practicing to improve! 💪</p>}
           
-          <div style={{ marginTop: '30px' }}>
+          <div className="quiz-actions">
             <Link to="/" className="nav-button">Back to Categories</Link>
             <Link to="/progress" className="nav-button">View Progress</Link>
           </div>
@@ -285,7 +285,7 @@ const QuizPage: React.FC = () => {
                     <img
                       src={option.media_url}
                       alt={option.option_text}
-                      style={{ width: '100%', maxWidth: '150px', height: 'auto', borderRadius: '8px' }}
+                      className="answer-image"
                       onError={(e) => {
                         e.currentTarget.src = '/images/placeholder-sign.jpg';
                       }}
@@ -301,27 +301,17 @@ const QuizPage: React.FC = () => {
         </div>
         
         {feedback && (
-          <div style={{ 
-            margin: '20px 0', 
-            padding: '15px', 
-            borderRadius: '10px',
-            background: feedback.includes('Correct') ? 'rgba(76, 175, 80, 0.2)' : 'rgba(244, 67, 54, 0.2)',
-            border: `1px solid ${feedback.includes('Correct') ? '#4CAF50' : '#f44336'}`
-          }}>
+          <div className={`quiz-feedback ${feedback.includes('Correct') ? 'correct' : 'incorrect'}`}>
             <h4>{feedback}</h4>
           </div>
         )}
         
-        <div style={{ marginTop: '30px' }}>
+        <div className="quiz-actions">
           {!showResult ? (
             <button 
-              className="nav-button" 
+              className={`nav-button ${selectedAnswer ? 'enabled' : 'submit-button'}`}
               onClick={handleSubmitAnswer}
               disabled={!selectedAnswer}
-              style={{ 
-                opacity: selectedAnswer ? 1 : 0.5,
-                cursor: selectedAnswer ? 'pointer' : 'not-allowed'
-              }}
             >
               Submit Answer
             </button>

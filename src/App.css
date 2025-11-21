@@ -237,9 +237,62 @@
   font-size: 18px;
 }
 
+.quiz-score {
+  font-size: 48px;
+  margin: 20px 0;
+}
+
+.quiz-feedback {
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.quiz-feedback.correct {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid #4CAF50;
+}
+
+.quiz-feedback.incorrect {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid #f44336;
+}
+
+.quiz-feedback.excellent {
+  color: #4CAF50;
+  font-size: 18px;
+}
+
+.quiz-feedback.good {
+  color: #FF9800;
+  font-size: 18px;
+}
+
+.quiz-feedback.needs-practice {
+  color: #f44336;
+  font-size: 18px;
+}
+
 .quiz-actions {
   margin-top: 30px;
   text-align: center;
+}
+
+.answer-image {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.submit-button {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submit-button.enabled {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .answer-image {

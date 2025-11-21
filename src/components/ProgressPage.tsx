@@ -175,7 +175,7 @@ const ProgressPage: React.FC = () => {
 
       <h2>Progress by Category</h2>
       
-      {categories.map(category => {
+      {categories.map((category: Category) => {
         const stats = calculateCategoryStats(category.id);
         const progressPercentage = stats.totalQuestions > 0 
           ? (stats.completedQuestions / stats.totalQuestions) * 100 
@@ -187,13 +187,11 @@ const ProgressPage: React.FC = () => {
             <p>{category.description}</p>
             
             <div className="progress-bar">
-              <div
+              <div 
                 className="progress-fill" 
                 style={{ width: `${progressPercentage}%` }}
               ></div>
-            </div>
-            
-            <div className="progress-stats">
+            </div>            <div className="progress-stats">
               <div className="stat-item">
                 <h4>{stats.completedQuestions}/{stats.totalQuestions}</h4>
                 <p>Questions Completed</p>
@@ -220,7 +218,7 @@ const ProgressPage: React.FC = () => {
 
       <div className="quiz-card">
         <h3>Recent Activity</h3>
-        {progress.slice(-5).reverse().map((item, index) => (
+        {progress.slice(-5).reverse().map((item: UserProgress, index: number) => (
           <div key={item.id} className="activity-item">
             <p>
               Question answered {item.is_correct ? 'correctly' : 'incorrectly'} 
